@@ -2,18 +2,26 @@ package com.poortoys.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-public class Person {
+import jakarta.persistence.MappedSuperclass;
+/**
+ * Superclase de la jerarquía de personas.
+ * Sus atributos se heredan en Author u otras entidades que la extiendan.
+ */
+@MappedSuperclass 
+public abstract class Person {
 	 @Id
-	    private String id;
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
 
 	    private String name;
 	    private LocalDate dob;
-		public String getId() {
+		public Long getId() {
 			return id;
 		}
-		public void setId(String id) {
+		public void setId(Long id) {
 			this.id = id;
 		}
 		public String getName() {
@@ -28,6 +36,7 @@ public class Person {
 		public void setDob(LocalDate dob) {
 			this.dob = dob;
 		}
+		
 	    
 	    
 
