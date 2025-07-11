@@ -31,6 +31,7 @@ public class MultimediaItemResource {
     public List<MultimediaItem> findAll() {
         return em.createQuery("SELECT mi FROM MultimediaItem mi", MultimediaItem.class).getResultList();
     }
+	
 
     @GET
     @Path("/{id}")

@@ -1,4 +1,6 @@
 package com.poortoys.resources;
+import java.util.List;
+
 import com.poortoys.model.Book;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
@@ -22,6 +24,10 @@ import jakarta.ws.rs.core.Response;
 public class BookResource {
 	@PersistenceContext(unitName="CRUD_PU")
     private EntityManager em;
+	@GET
+    public List<Book> findAll() {
+        return em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
+    }
 
 	@GET
 	@Path("/{id}")

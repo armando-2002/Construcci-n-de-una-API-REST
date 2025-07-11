@@ -1,4 +1,6 @@
 package com.poortoys.resources;
+import java.util.List;
+
 import com.poortoys.model.Author;
 import com.poortoys.model.BookItem;
 
@@ -44,6 +46,10 @@ public class BookItemResource {
 	    return Response.status(Response.Status.CREATED).entity(item).build();
 	}
 
+	@GET
+    public List<BookItem> findAll() {
+        return em.createQuery("SELECT b FROM BookItem b", BookItem.class).getResultList();
+    }
 
 	@GET
     @Path("/{id}")

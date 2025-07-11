@@ -1,4 +1,6 @@
 package com.poortoys.resources;
+import java.util.List;
+
 import com.poortoys.model.Multimedia;
 
 import jakarta.enterprise.context.RequestScoped;
@@ -22,6 +24,10 @@ import jakarta.ws.rs.DELETE;
 public class MultimediaResource {
 	@PersistenceContext(unitName="CRUD_PU")
 	    private EntityManager em;
+	@GET
+    public List<Multimedia> findAll() {
+        return em.createQuery("SELECT m FROM Multimedia m", Multimedia.class).getResultList();
+    }
 
 	@GET
 	@Path("/{id}")

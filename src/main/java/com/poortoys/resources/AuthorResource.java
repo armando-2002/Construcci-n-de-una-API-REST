@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.poortoys.model.Author;
 
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -21,6 +22,7 @@ import jakarta.ws.rs.core.Response;
 @Path("/authors")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@RequestScoped
 public class AuthorResource {
 	@PersistenceContext(unitName="CRUD_PU")
     private EntityManager em;
