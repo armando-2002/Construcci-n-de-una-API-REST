@@ -48,12 +48,17 @@ public class AuthorResource {
     }
 
     @PUT
+    @Path("/{id}")
     @Transactional
-    public Response update(Author author) {
-        em.merge(author);
-        return Response.ok(author).build();
+    public Response update(@PathParam("id") Long id, Author a) {
+        Author ex = em.find(Author.class, id);
+        if (ex == null) return Response.status(Response.Status.NOT_FOUND).build();
+        ex.setName(a.getName());
+        ex.setDob(a.getDob());
+        ex.setAuthorName(a.getAuthorName());
+        em.merge(ex);
+        return Response.ok(ex).build();
     }
-
     @DELETE
     @Path("/{id}")
     @Transactional

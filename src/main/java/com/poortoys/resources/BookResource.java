@@ -1,6 +1,6 @@
 package com.poortoys.resources;
 import java.util.List;
-
+import com.poortoys.model.Author;
 import com.poortoys.model.Book;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
@@ -45,10 +45,20 @@ public class BookResource {
 	    }
 
 	    @PUT
+	    @Path("/{id}")
 	    @Transactional
-	    public Response update(Book book) {
-	        em.merge(book);
-	        return Response.ok(book).build();
+	    public Response update(@PathParam("id") Long id, Book b) {
+	        Book ex = em.find(Book.class, id);
+	        if (ex == null) return Response.status(Response.Status.NOT_FOUND).build();
+	        ex.setTitle(b.getTitle());
+	        if (b.getAuthor() != null && b.getAuthor().getId() != null) {
+	            Author a = em.find(Author.class, b.getAuthor().getId());
+	            if (a == null)
+	                return Response.status(Response.Status.BAD_REQUEST).entity("Author not found").build();
+	            ex.setAuthor(a);
+	        }
+	        em.merge(ex);
+	        return Response.ok(ex).build();
 	    }
 
 	    @DELETE

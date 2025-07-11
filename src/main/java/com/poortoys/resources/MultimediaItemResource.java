@@ -50,10 +50,16 @@ public class MultimediaItemResource {
         return Response.status(Response.Status.CREATED).entity(item).build();
     }
     @PUT
+    @Path("/{id}")
     @Transactional
-    public Response update(MultimediaItem item) {
-        em.merge(item);
-        return Response.ok(item).build();
+    public Response update(@PathParam("id") Long id, MultimediaItem mi) {
+        MultimediaItem ex = em.find(MultimediaItem.class, id);
+        if (ex == null) return Response.status(Response.Status.NOT_FOUND).build();
+        ex.setTitle(mi.getTitle());
+        ex.setFormat(mi.getFormat());
+        ex.setResolution(mi.getResolution());
+        em.merge(ex);
+        return Response.ok(ex).build();
     }
 
     @DELETE

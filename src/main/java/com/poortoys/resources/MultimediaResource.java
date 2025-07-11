@@ -45,10 +45,15 @@ public class MultimediaResource {
     }
 
     @PUT
+    @Path("/{id}")
     @Transactional
-    public Response update(Multimedia multimedia) {
-        em.merge(multimedia);
-        return Response.ok(multimedia).build();
+    public Response update(@PathParam("id") Long id, Multimedia m) {
+        Multimedia ex = em.find(Multimedia.class, id);
+        if (ex == null) return Response.status(Response.Status.NOT_FOUND).build();
+        ex.setTitle(m.getTitle());
+        ex.setFormat(m.getFormat());
+        em.merge(ex);
+        return Response.ok(ex).build();
     }
 
     @DELETE

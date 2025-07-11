@@ -59,20 +59,23 @@ public class BookItemResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         return Response.ok(item).build();
     }
-	 @PUT
-	    @Transactional
-	    public Response update(BookItem item) {
-	        if (item.getAuthor() != null && item.getAuthor().getId() != null) {
-	            Author author = em.find(Author.class, item.getAuthor().getId());
-	            if (author == null)
-	                return Response.status(Response.Status.BAD_REQUEST)
-	                               .entity("Author not found").build();
-	            item.setAuthor(author);
-	        }
-	        em.merge(item);
-	        return Response.ok(item).build();
-	    }
-
+	@PUT
+    @Path("/{id}")
+    @Transactional
+    public Response update(@PathParam("id") Long id, BookItem bi) {
+        BookItem ex = em.find(BookItem.class, id);
+        if (ex == null) return Response.status(Response.Status.NOT_FOUND).build();
+        ex.setTitle(bi.getTitle());
+        ex.setIsbn(bi.getIsbn());
+        if (bi.getAuthor() != null && bi.getAuthor().getId() != null) {
+            Author a = em.find(Author.class, bi.getAuthor().getId());
+            if (a == null)
+                return Response.status(Response.Status.BAD_REQUEST).entity("Author not found").build();
+            ex.setAuthor(a);
+        }
+        em.merge(ex);
+        return Response.ok(ex).build();
+    }
 	    @DELETE
 	    @Path("/{id}")
 	    @Transactional
