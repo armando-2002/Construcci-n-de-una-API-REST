@@ -6,15 +6,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "book_item")
 public class BookItem extends Book{
-	 private String ISBN;
+	 private String isbn;
 
-	 public String getISBN() {
-		 return ISBN;
+	 public String getIsbn() {
+		 return isbn;
 	 }
 
-	 public void setISBN(String iSBN) {
-		 ISBN = iSBN;
+	 public void setIsbn(String isbn) {
+		 this.isbn = isbn;
 	 }
+
 
 	 
 
