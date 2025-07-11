@@ -1,7 +1,4 @@
 package com.poortoys.resources;
-
-import java.util.List;
-
 import com.poortoys.model.Multimedia;
 
 import jakarta.enterprise.context.RequestScoped;
@@ -27,9 +24,12 @@ public class MultimediaResource {
 	    private EntityManager em;
 
 	@GET
-    public List<Multimedia> findAll() {
-        return em.createQuery("SELECT m FROM Multimedia m", Multimedia.class).getResultList();
-    }
+	@Path("/{id}")
+	public Response findById(@PathParam("id") Long id) {
+	    Multimedia m = em.find(Multimedia.class, id);
+	    if (m == null) return Response.status(Response.Status.NOT_FOUND).build();
+	    return Response.ok(m).build();
+	}
 
     @POST
     @Transactional

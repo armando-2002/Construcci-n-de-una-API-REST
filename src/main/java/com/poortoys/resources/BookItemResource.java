@@ -67,8 +67,6 @@ public class BookItemResource {
 	        return Response.ok(item).build();
 	    }
 
-	    // ───────────────────────────────────────
-	    // DELETE /book-items/{id}       (borrar)
 	    @DELETE
 	    @Path("/{id}")
 	    @Transactional

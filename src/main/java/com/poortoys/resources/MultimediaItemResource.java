@@ -12,8 +12,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -46,4 +48,23 @@ public class MultimediaItemResource {
         em.persist(item);
         return Response.status(Response.Status.CREATED).entity(item).build();
     }
+    @PUT
+    @Transactional
+    public Response update(MultimediaItem item) {
+        em.merge(item);
+        return Response.ok(item).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Response delete(@PathParam("id") Long id) {
+        MultimediaItem mi = em.find(MultimediaItem.class, id);
+        if (mi != null) {
+            em.remove(mi);
+            return Response.noContent().build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
 }
