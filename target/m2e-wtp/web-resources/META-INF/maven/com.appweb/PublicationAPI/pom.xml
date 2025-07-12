@@ -1,49 +1,51 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.appweb</groupId>
-  <artifactId>PublicationAPI</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <properties>
-<maven.compiler.source>17</maven.compiler.source>
-<maven.compiler.target>17</maven.compiler.target>
-<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<failOnMissingWebXml>false</failOnMissingWebXml>
-<jakartaee.version>10.0.0</jakartaee.version>
-</properties>
-<dependencies>
-<!--  Jakarta EE  -->
-<dependency>
-<groupId>jakarta.platform</groupId>
-<artifactId>jakarta.jakartaee-web-api</artifactId>
-<version>${jakartaee.version}</version>
-<scope>provided</scope>
-</dependency>
-<!--  PostgreSQL Driver  -->
-<dependency>
-<groupId>org.postgresql</groupId>
-<artifactId>postgresql</artifactId>
-<version>42.7.2</version>
-</dependency>
-<dependency>
-<groupId>org.hibernate.orm</groupId>
-<artifactId>hibernate-core</artifactId>
-<version>6.6.1.Final</version>
-</dependency>
-<!--  https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager  -->
-<dependency>
-<groupId>org.hibernate</groupId>
-<artifactId>hibernate-entitymanager</artifactId>
-<version>5.6.15.Final</version>
-</dependency>
-<!--  https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-jpamodelgen  -->
-<dependency>
-<groupId>org.hibernate.orm</groupId>
-<artifactId>hibernate-jpamodelgen</artifactId>
-<version>6.6.1.Final</version>
-</dependency>
-</dependencies>
-<build>
-<finalName>api-jakarta-rest</finalName>
-</build>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.appweb</groupId>
+	<artifactId>PublicationAPI</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<properties>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<jakartaee.version>10.0.0</jakartaee.version>
+	</properties>
+	<dependencies>
+		<!-- Jakarta EE -->
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-web-api</artifactId>
+			<version>${jakartaee.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- PostgreSQL Driver -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.6.1.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.6.15.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-jpamodelgen -->
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>6.6.1.Final</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>api-jakarta-rest</finalName>
+	</build>
 </project>
